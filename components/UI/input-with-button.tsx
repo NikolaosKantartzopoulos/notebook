@@ -22,7 +22,7 @@ function InputWithButton({
 	triggerFn,
 }: Props) {
 	return (
-		<>
+		<div className="input-with-button">
 			<Input
 				type={type}
 				label={label}
@@ -31,7 +31,7 @@ function InputWithButton({
 				value={value}
 			/>
 			<Button text={text} triggerFn={triggerFn} />
-		</>
+		</div>
 	);
 }
 

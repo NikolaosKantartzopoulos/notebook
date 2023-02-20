@@ -4,16 +4,16 @@ import Head from "next/head";
 
 import Input from "@/components/UI/input";
 
-import styles from "@/pages/index.module.css";
 import InputWithButton from "@/components/UI/input-with-button";
 import Note from "@/data/interfaces/note-interface";
 import { NoteContext } from "@/data/contexts/note-context";
+import ListItem from "@/components/main/list-item";
 
 export default function Home() {
 	const noteCtx = useContext(NoteContext!);
 
 	return (
-		<div className={styles.container}>
+		<div id="home-page">
 			<Head>
 				<title>Notebook</title>
 				<link rel="icon" href="/favicon.ico" />
@@ -37,7 +37,7 @@ export default function Home() {
 				/>
 				<ul>
 					{noteCtx!.notesArray.map((note: Note) => (
-						<li key={note.title}>{note.title}</li>
+						<ListItem key={note.title} note={note} />
 					))}
 				</ul>
 			</main>

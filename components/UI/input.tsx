@@ -10,7 +10,7 @@ interface Props {
 
 function Input({ type = "text", label, id, onChange, value }: Props) {
 	return (
-		<>
+		<div className="input-div">
 			<label htmlFor={id}>{label}</label>
 			<input
 				type={type}
@@ -18,7 +18,7 @@ function Input({ type = "text", label, id, onChange, value }: Props) {
 				onChange={(e) => onChange(e.target.value)}
 				value={value}
 			/>
-		</>
+		</div>
 	);
 }
 

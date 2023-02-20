@@ -1,0 +1,21 @@
+label {
+	background-color: $dark-main-1;
+	height: 1.5rem;
+	margin: auto;
+	padding: 0.2rem;
+	background-color: $dark-main-1;
+}
+
+input {
+	height: 1.5rem;
+	padding: 0.25rem;
+	border: none;
+}
+
+.input-div {
+	@include flex-row;
+}
+
+.input-with-button {
+	@include flex-row;
+}
