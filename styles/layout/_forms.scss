@@ -1,21 +1,40 @@
 label {
 	background-color: $dark-main-1;
 	height: 1.5rem;
-	margin: auto;
 	padding: 0.2rem;
-	background-color: $dark-main-1;
+	flex: 8rem 1 6rem;
 }
 
 input {
 	height: 1.5rem;
 	padding: 0.25rem;
-	border: none;
+	border: $border-sm-dark-main-1;
+	flex: 1 1 auto;
+
+	&:focus {
+		outline: none;
+		box-shadow: $inset-shadow-sm;
+	}
+}
+
+textarea {
+	padding: 0.5rem;
+	margin-top: 0.5rem;
+	&:focus {
+		outline: none;
+		box-shadow: $inset-shadow-sm;
+	}
 }
 
 .input-div {
 	@include flex-row;
+	justify-content: center;
+	flex: 1 1 auto;
 }
 
-.input-with-button {
-	@include flex-row;
+.input-div-textarea {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: $mini-card-width;
 }

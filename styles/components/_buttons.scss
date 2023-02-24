@@ -3,13 +3,14 @@ button {
 	border: 2px solid $dark-main-1;
 	background-color: $light-main-1;
 	color: $dark-main-1;
-	transition: 0.25s all;
+	flex: auto 1 4rem;
+	transition: $animation-fast;
 
 	&:hover {
 		cursor: pointer;
 		border: 2px solid $light-main-1;
 		color: $light-main-1;
 		background-color: $dark-main-1;
-		transition: 0.25s all;
+		transition: $animation-fast;
 	}
 }

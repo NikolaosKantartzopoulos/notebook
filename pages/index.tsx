@@ -1,46 +1,24 @@
 import { useContext } from "react";
+import { NoteContext } from "@/data/contexts/note-context";
 
 import Head from "next/head";
 
-import Input from "@/components/UI/input";
-
-import InputWithButton from "@/components/UI/input-with-button";
+import AddNoteUI from "@/components/main/add-note-UI";
 import Note from "@/data/interfaces/note-interface";
-import { NoteContext } from "@/data/contexts/note-context";
 import ListItem from "@/components/main/list-item";
+import NotesLibrary from "@/components/main/notes-library";
 
 export default function Home() {
 	const noteCtx = useContext(NoteContext!);
 
 	return (
-		<div id="home-page">
+		<main id="home-page">
 			<Head>
 				<title>Notebook</title>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<main>
-				<h1>test</h1>
-				<InputWithButton
-					id="add-new-note"
-					label="New Note"
-					onChange={noteCtx!.setNewNoteTitle}
-					type="text"
-					value={noteCtx!.newNoteTitle}
-					triggerFn={noteCtx!.addNote}
-				/>
-				<Input
-					id="add-new-note-details"
-					label="Details"
-					onChange={noteCtx!.setNoteDetails}
-					type="textarea"
-					value={noteCtx!.noteDetails}
-				/>
-				<ul>
-					{noteCtx!.notesArray.map((note: Note) => (
-						<ListItem key={note.title} note={note} />
-					))}
-				</ul>
-			</main>
-		</div>
+			<AddNoteUI />
+			<NotesLibrary />
+		</main>
 	);
 }

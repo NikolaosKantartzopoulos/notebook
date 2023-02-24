@@ -1,0 +1,15 @@
+.note-list-item {
+	background-image: url("../../public/assets/images/blue.jpg");
+	width: $mini-card-width;
+	height: 10rem;
+	padding: 0.5rem;
+}
+
+.note-title {
+	text-align: center;
+	margin: 0.5rem;
+	font-size: 1.25rem;
+	border-bottom: 2px solid $light-main-1;
+	border-top: 2px solid $light-main-1;
+	border-radius: 4px;
+}

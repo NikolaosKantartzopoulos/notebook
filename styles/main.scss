@@ -6,7 +6,13 @@
 @import "base/base";
 
 @import "layout/forms";
+@import "layout/lists";
 
-@import "components/input-with-button.scss";
+@import "components/note-list-item";
+@import "components/add-note-UI";
 @import "components/buttons";
+@import "components/input-with-button";
+@import "components/note-details";
+@import "components/notes-library";
+
 @import "pages/home.scss";

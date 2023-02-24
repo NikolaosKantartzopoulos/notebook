@@ -2,25 +2,19 @@ import React from "react";
 
 import Note from "@/data/interfaces/note-interface";
 
-import Image from "next/image";
-
-import blueBG from "@/public/assets/images/blue.jpg";
-
 interface Props {
 	note: Note;
 }
 
 function ListItem({ note }: Props) {
 	return (
-		<li>
-			<p>{note.title}</p>
+		<li className="note-list-item">
+			<p className="note-title">{note.title}</p>
 			<div>
+				<span>Created: {note.addDate!.toLocaleDateString("el-GR")}</span>
 				{/* <span>
-					<>Created: {note.addDate}</>
-				</span>
-				<span>
-					<>Delete on: {note.deleteDate}</>
-				</span>
+					<>Delete on: {note.deleteDate!.toISOString()}</>
+				</span> */}
 				{note.tags && (
 					<div>
 						{note.tags.map((t) => (
@@ -28,8 +22,7 @@ function ListItem({ note }: Props) {
 						))}
 					</div>
 				)}
-				<div>{note.details}</div> */}
-				<Image src={blueBG} alt="Blue Background" width={320} height={64} />
+				<div className="note-details">{note.details}</div>
 			</div>
 		</li>
 	);

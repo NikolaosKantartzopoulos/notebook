@@ -3,3 +3,11 @@ $light-main-2: beige;
 $dark-main-1: darkblue;
 $dark-main-2: cornflowerblue;
 $primary-bg-color: darkolivegreen;
+
+$inset-shadow-sm: inset 0 0 2px 2px $dark-main-1;
+
+$animation-fast: 0.25s all;
+
+$mini-card-width: clamp(350px, 100%, 500px);
+
+$border-sm-dark-main-1: 2px solid $dark-main-1;

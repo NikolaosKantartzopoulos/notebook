@@ -1,50 +1,50 @@
-import { useState, createContext, SetStateAction } from "react";
+import { useState, createContext, SetStateAction, useReducer } from "react";
 import Note from "../interfaces/note-interface";
 import {
 	getAllNoteTitles,
 	clearAllInputs,
 } from "../helper-functions/note-context-helper";
+import { loadedNoteReducer, sampleLoadedNote } from "../reducers/note-reducer";
+
+export const NoteContext = createContext<NoteContextType | null>(null);
 
 interface NoteContextType {
-	newNoteTitle: string;
-	setNewNoteTitle: React.Dispatch<SetStateAction<string>>;
-	noteDetails: string;
-	setNoteDetails: React.Dispatch<SetStateAction<string>>;
+	loadedNoteState: Note | null;
+	dispatchLoadedNoteStateAction: React.Dispatch<any>;
 	notesArray: Note[] | [];
 	setNotesArray: React.Dispatch<React.SetStateAction<Note[]>>;
 	addNote: () => void;
 }
-
-export const NoteContext = createContext<NoteContextType | null>(null);
 
 interface Props {
 	children?: JSX.Element | JSX.Element[];
 }
 
 function NoteContextProvider({ children }: Props) {
-	const [newNoteTitle, setNewNoteTitle] = useState<string>("");
-	const [noteDetails, setNoteDetails] = useState<string>("");
+	const [loadedNoteState, dispatchLoadedNoteStateAction] = useReducer(
+		loadedNoteReducer,
+		sampleLoadedNote
+	);
+
 	const [notesArray, setNotesArray] = useState<Note[]>([]);
 
 	function addNote(): void {
-		if (getAllNoteTitles(notesArray).includes(newNoteTitle)) return;
+		if (getAllNoteTitles(notesArray).includes(loadedNoteState.title)) return;
 		let newNote: Note = {
-			title: newNoteTitle,
+			title: loadedNoteState.title,
 			addDate: new Date(),
-			details: noteDetails,
+			details: loadedNoteState.details,
 		};
 		setNotesArray((prev) => [...prev, newNote]);
-		clearAllInputs(setNewNoteTitle, setNoteDetails);
+		dispatchLoadedNoteStateAction({ type: "clearAllInputs" });
 	}
 
 	const noteContext = {
-		newNoteTitle,
-		setNewNoteTitle,
-		noteDetails,
-		setNoteDetails,
+		addNote,
+		dispatchLoadedNoteStateAction,
+		loadedNoteState,
 		notesArray,
 		setNotesArray,
-		addNote,
 	};
 
 	return (
