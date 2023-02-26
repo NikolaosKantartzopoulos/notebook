@@ -1,16 +1,13 @@
 button {
+	@include border-background;
 	height: 1.5rem;
-	border: 2px solid $dark-main-1;
-	background-color: $light-main-1;
-	color: $dark-main-1;
+
 	flex: auto 1 4rem;
 	transition: $animation-fast;
 
 	&:hover {
+		@include border-background-inverse;
 		cursor: pointer;
-		border: 2px solid $light-main-1;
-		color: $light-main-1;
-		background-color: $dark-main-1;
 		transition: $animation-fast;
 	}
 }

@@ -1,29 +1,50 @@
 .note-list-item {
 	background-image: url("../../public/assets/images/blue.jpg");
 	width: $mini-card-width;
-	height: 10rem;
+	min-height: 10rem;
 	padding: 0.5rem;
 	margin-bottom: 1rem;
 	border-radius: 4px;
-	box-shadow: 2px 4px 4px 2px $dark-main-1;
+	box-shadow: $shadow-m;
 }
 
 .note-title {
+	@include flex-row;
+	justify-content: space-between;
 	text-align: center;
 	margin: 0.5rem;
 	font-size: 1.25rem;
 	border-bottom: 2px solid $light-main-1;
 	border-top: 2px solid $light-main-1;
 	border-radius: 4px;
+	padding: 4px;
+	h3 {
+		margin: 0;
+	}
 }
 
 .date-range {
-	display: flex;
+	@include flex-row;
 	gap: 1rem;
-	align-items: center;
 	justify-content: center;
+	font-size: 1rem;
 
 	p {
 		margin: 0;
+	}
+}
+
+.list-item-tags-div {
+	@include flex-row;
+	justify-content: flex-start;
+	gap: 1rem;
+
+	.tagParagraph {
+		border: 3px solid $dark-main-1;
+		border-radius: 4px;
+		background-color: white;
+		color: $dark-main-1;
+		padding: 4px;
+		width: fit-content;
 	}
 }

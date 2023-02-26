@@ -4,8 +4,6 @@ import { NoteContext } from "@/data/contexts/note-context";
 import Head from "next/head";
 
 import AddNoteUI from "@/components/main/add-note-UI";
-import Note from "@/data/interfaces/note-interface";
-import ListItem from "@/components/main/list-item";
 import NotesLibrary from "@/components/main/notes-library";
 import Card from "@/components/UI/card";
 

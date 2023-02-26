@@ -8,7 +8,6 @@ type Props = {
 
 function Tag({ tag, dispatchLoadedNoteStateAction, currentTags }: Props) {
 	function clickHandler() {
-		console.log(tag);
 		dispatchLoadedNoteStateAction({
 			type: "setLoadedNoteTags",
 			tags: currentTags.filter((t) => t !== tag),

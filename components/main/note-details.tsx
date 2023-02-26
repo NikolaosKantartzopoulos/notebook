@@ -13,7 +13,6 @@ function NoteDetails({}: Props) {
 			type: "setLoadedNoteDetails",
 			details: e,
 		});
-		console.log(e);
 	}
 
 	return (
@@ -24,6 +23,7 @@ function NoteDetails({}: Props) {
 				onChange={editDetailsHandler}
 				type="textarea"
 				value={noteCtx!.loadedNoteState!.details!}
+				placeholder="Details..."
 			/>
 		</div>
 	);

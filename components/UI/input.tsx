@@ -7,7 +7,8 @@ interface Props {
 	type: string;
 	value: string | number;
 	inputWidth?: string;
-	inputRef?: React.Ref<HTMLInputElement> | null;
+	inputRef?: React.Ref<HTMLInputElement>;
+	placeholder?: string;
 }
 
 function Input({
@@ -18,6 +19,7 @@ function Input({
 	value,
 	inputWidth,
 	inputRef,
+	placeholder,
 }: Props) {
 	if (type == "textarea") {
 		return (
@@ -27,6 +29,7 @@ function Input({
 					onChange={(e) => onChange(e.target.value)}
 					value={value}
 					rows={5}
+					placeholder={placeholder}
 				/>
 			</div>
 		);
@@ -42,6 +45,7 @@ function Input({
 				value={value}
 				style={{ width: `${inputWidth! ? inputWidth : null}` }}
 				ref={inputRef}
+				placeholder={placeholder}
 			/>
 		</div>
 	);

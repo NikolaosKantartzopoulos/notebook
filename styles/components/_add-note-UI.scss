@@ -1,8 +1,7 @@
 #add-note-UI {
 	width: $mini-card-width;
 	background: url("../../public/assets/images/blue.jpg");
-	padding: 0.5rem;
-	border-radius: 4px;
+	box-shadow: $shadow-m;
 }
 
 .dateAndTagsDiv {

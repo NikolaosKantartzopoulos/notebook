@@ -5,6 +5,7 @@ import InputWithButton from "../UI/input-with-button";
 import NoteDetails from "./note-details";
 import NoteDeleteDate from "./note-delete-day";
 import NoteTags from "./note-tags";
+import Card from "../UI/card";
 
 function AddNoteUI() {
 	const noteCtx = useContext(NoteContext);
@@ -17,7 +18,7 @@ function AddNoteUI() {
 	}
 
 	return (
-		<div id="add-note-UI">
+		<Card id="add-note-UI">
 			<div className="dateAndTagsDiv">
 				<NoteDeleteDate />
 				<InputWithButton
@@ -26,11 +27,12 @@ function AddNoteUI() {
 					type="text"
 					value={noteCtx!.loadedNoteState!.title}
 					triggerFn={noteCtx!.addNote}
+					placeholder="Title..."
 				/>
 			</div>
 			<NoteTags />
 			<NoteDetails />
-		</div>
+		</Card>
 	);
 }
 

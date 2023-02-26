@@ -1,9 +1,13 @@
 import React from "react";
 
-type Props = { children?: JSX.Element | JSX.Element[] };
+type Props = { id?: string; children?: JSX.Element | JSX.Element[] };
 
-function Card({ children }: Props) {
-	return <div className="card">{children}</div>;
+function Card({ id, children }: Props) {
+	return (
+		<div className="card" id={id}>
+			{children}
+		</div>
+	);
 }
 
 export default Card;

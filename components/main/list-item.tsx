@@ -8,22 +8,28 @@ interface Props {
 }
 
 function ListItem({ note }: Props) {
-	console.log(note);
 	return (
 		<li className="note-list-item">
-			<p className="note-title">{note.title}</p>
-			<div>
+			<h1 className="note-title">
+				<h3 data-testid="noteTitle">{note.title}</h3>
+
 				<div className="date-range">
 					<p>{note.addDate!.toLocaleDateString("el-GR")} </p>
 					<p>-</p>
 					<p>{note.deleteDate!.toLocaleDateString("el-GR")}</p>
 				</div>
-				{/* <div>
-					{note!.tags!.map((t) => (
-						<p key={t}>{t}</p>
-					))}
-				</div> */}
-				<div className="note-details">{note.details}</div>
+			</h1>
+			<div>
+				<div className="note-details" data-testid="detailsTextarea">
+					{note.details}
+				</div>
+			</div>
+			<div className="list-item-tags-div">
+				{note!.tags!.map((t) => (
+					<p key={t} className="tagParagraph">
+						{t}
+					</p>
+				))}
 			</div>
 		</li>
 	);

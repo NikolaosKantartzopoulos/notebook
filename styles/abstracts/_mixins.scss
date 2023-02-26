@@ -3,3 +3,17 @@
 	flex-flow: row wrap;
 	align-items: center;
 }
+
+@mixin border-background {
+	border: 2px solid $dark-main-1;
+	background-color: $light-main-1;
+	color: $dark-main-1;
+	border-radius: 4px;
+}
+
+@mixin border-background-inverse {
+	border: 2px solid $light-main-1;
+	background-color: $dark-main-1;
+	color: $light-main-1;
+	border-radius: 4px;
+}

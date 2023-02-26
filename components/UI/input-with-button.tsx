@@ -13,6 +13,7 @@ interface Props {
 	style?: {};
 	inputWidth?: string;
 	inputRef?: React.Ref<HTMLInputElement> | null;
+	placeholder?: string;
 }
 
 function InputWithButton({
@@ -26,6 +27,7 @@ function InputWithButton({
 	style,
 	inputWidth,
 	inputRef,
+	placeholder,
 }: Props): JSX.Element {
 	return (
 		<div className="input-with-button" style={style}>
@@ -37,6 +39,7 @@ function InputWithButton({
 				value={value}
 				inputWidth={inputWidth}
 				inputRef={inputRef}
+				placeholder={placeholder}
 			/>
 			<Button text={text} triggerFn={triggerFn} />
 		</div>

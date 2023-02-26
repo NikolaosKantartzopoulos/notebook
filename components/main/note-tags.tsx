@@ -12,7 +12,6 @@ function NoteTags({}: Props) {
 	const [tagInputValue, setTagInputValue] = useState("");
 
 	function newTabHandler() {
-		console.log(tagInputValue);
 		noteCtx?.dispatchLoadedNoteStateAction({
 			type: "setLoadedNoteTags",
 			tags: [...noteCtx!.loadedNoteState!.tags!, tagInputValue],
@@ -27,6 +26,7 @@ function NoteTags({}: Props) {
 				{noteCtx!.loadedNoteState!.tags!.map((t) => (
 					<Tag
 						tag={t}
+						key={t}
 						dispatchLoadedNoteStateAction={
 							noteCtx!.dispatchLoadedNoteStateAction
 						}

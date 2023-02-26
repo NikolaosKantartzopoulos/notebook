@@ -1,8 +1,8 @@
 .note-tags-component {
-	display: flex;
+	@include flex-row;
 	justify-content: flex-start;
-	align-items: center;
 	height: 2rem;
+	gap: 1rem;
 }
 
 .tagsDiv {
@@ -11,9 +11,8 @@
 }
 
 .tag {
-	display: flex;
-	align-items: center;
-	width: 6rem;
+	@include flex-row;
+	min-width: 6rem;
 	border: 1px solid $light-main-1;
 	justify-content: space-between;
 	padding: 0 4px;
@@ -30,11 +29,11 @@
 	cursor: pointer;
 	margin: 4px;
 	position: relative;
+	transition: $animation-fast;
 
 	&:hover {
-		background-color: $dark-main-1;
-		color: $light-main-1;
-		border: 2px solid $light-main-1;
+		@include border-background;
+		transition: $animation-fast;
 	}
 
 	span {
