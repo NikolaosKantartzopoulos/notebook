@@ -10,7 +10,7 @@ interface Props {
 function ListItem({ note }: Props) {
 	return (
 		<li className="note-list-item">
-			<h1 className="note-title">
+			<div className="note-title">
 				<h3 data-testid="noteTitle">{note.title}</h3>
 
 				<div className="date-range">
@@ -18,7 +18,7 @@ function ListItem({ note }: Props) {
 					<p>-</p>
 					<p>{note.deleteDate!.toLocaleDateString("el-GR")}</p>
 				</div>
-			</h1>
+			</div>
 			<div>
 				<div className="note-details" data-testid="detailsTextarea">
 					{note.details}
