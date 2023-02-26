@@ -1,29 +1,30 @@
-# Next.js + Jest
+### Simple to-do list - [Live link](https://to-do-list-five-ebon.vercel.app/)
 
-This example shows how to configure Jest to work with Next.js.
+---
 
-This includes Next.js' built-in support for Global CSS, CSS Modules and TypeScript.
+### Created with
 
-## How to Use
+- [React](https://reactjs.org/)
+- [NextJS](https://nextjs.org/)
+- [JEST](https://jestjs.io/) + [React Testing Library](https://testing-library.com/)
+- [Typescript](https://www.typescriptlang.org/)
 
-Quickly get started using [Create Next App](https://github.com/vercel/next.js/tree/canary/packages/create-next-app#readme)!
+---
 
-In your terminal, run the following command:
+### Summary
 
-```bash
-npx create-next-app --example with-jest with-jest-app
+Simple to-do list. 
+
+My first project useing Typescrit, Unit Testing and Sass!
+
+---
+
+### Development
+
+```
+git clone https://github.com/NikolaosKantartzopoulos/to-do-list.git && cd ./to-do-list && npm i && npm run dev
 ```
 
-```bash
-yarn create next-app --example with-jest with-jest-app
 ```
-
-```bash
-pnpm create next-app --example with-jest with-jest-app
-```
-
-## Run Jest Tests
-
-```bash
-npm test
+npm run test
 ```
