@@ -31,6 +31,6 @@ export const sampleLoadedNote: Note = {
 	title: "",
 	details: "",
 	addDate: null,
-	deleteDate: null,
+	deleteDate: new Date(),
 	tags: [],
 };

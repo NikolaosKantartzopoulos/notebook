@@ -20,6 +20,7 @@ input {
 textarea {
 	padding: 0.5rem;
 	margin-top: 0.5rem;
+	width: 100%;
 	&:focus {
 		outline: none;
 		box-shadow: $inset-shadow-sm;
@@ -36,5 +37,9 @@ textarea {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	width: $mini-card-width;
+	width: 100%;
+}
+
+#datepicker {
+	width: 5rem;
 }

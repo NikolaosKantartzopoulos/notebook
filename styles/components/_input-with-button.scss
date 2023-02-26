@@ -1,6 +1,6 @@
 .input-with-button {
 	@include flex-row;
-	width: $mini-card-width;
 	justify-content: center;
 	box-sizing: border-box;
+	flex: 1 1 auto;
 }

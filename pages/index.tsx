@@ -7,6 +7,7 @@ import AddNoteUI from "@/components/main/add-note-UI";
 import Note from "@/data/interfaces/note-interface";
 import ListItem from "@/components/main/list-item";
 import NotesLibrary from "@/components/main/notes-library";
+import Card from "@/components/UI/card";
 
 export default function Home() {
 	const noteCtx = useContext(NoteContext!);
@@ -17,8 +18,10 @@ export default function Home() {
 				<title>Notebook</title>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<AddNoteUI />
-			<NotesLibrary />
+			<Card>
+				<AddNoteUI />
+				<NotesLibrary />
+			</Card>
 		</main>
 	);
 }

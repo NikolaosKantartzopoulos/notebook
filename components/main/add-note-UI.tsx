@@ -1,8 +1,10 @@
-import React, { Dispatch, useContext } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { NoteContext } from "@/data/contexts/note-context";
 
 import InputWithButton from "../UI/input-with-button";
 import NoteDetails from "./note-details";
+import NoteDeleteDate from "./note-delete-day";
+import NoteTags from "./note-tags";
 
 function AddNoteUI() {
 	const noteCtx = useContext(NoteContext);
@@ -16,19 +18,17 @@ function AddNoteUI() {
 
 	return (
 		<div id="add-note-UI">
-			<InputWithButton
-				id="add-new-note"
-				label="New Note"
-				onChange={handleTitleChange}
-				type="text"
-				value={noteCtx!.loadedNoteState!.title}
-				triggerFn={noteCtx!.addNote}
-			/>
-			<input
-				type="date"
-				placeholder="dd-mm-yyyy"
-				onChange={(e) => console.log(e.target.value)}
-			/>
+			<div className="dateAndTagsDiv">
+				<NoteDeleteDate />
+				<InputWithButton
+					id="add-new-note"
+					onChange={handleTitleChange}
+					type="text"
+					value={noteCtx!.loadedNoteState!.title}
+					triggerFn={noteCtx!.addNote}
+				/>
+			</div>
+			<NoteTags />
 			<NoteDetails />
 		</div>
 	);

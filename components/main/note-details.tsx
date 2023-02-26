@@ -8,14 +8,22 @@ type Props = {};
 function NoteDetails({}: Props) {
 	const noteCtx = useContext(NoteContext);
 
+	function editDetailsHandler(e: any): void {
+		noteCtx!.dispatchLoadedNoteStateAction({
+			type: "setLoadedNoteDetails",
+			details: e,
+		});
+		console.log(e);
+	}
+
 	return (
 		<div id="note-details">
 			<Input
 				id="add-new-note-details"
 				label="Details"
-				onChange={noteCtx!.setNoteDetails}
+				onChange={editDetailsHandler}
 				type="textarea"
-				value={noteCtx!.noteDetails}
+				value={noteCtx!.loadedNoteState!.details!}
 			/>
 		</div>
 	);

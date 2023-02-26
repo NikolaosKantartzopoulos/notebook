@@ -1,9 +1,6 @@
 import { useState, createContext, SetStateAction, useReducer } from "react";
 import Note from "../interfaces/note-interface";
-import {
-	getAllNoteTitles,
-	clearAllInputs,
-} from "../helper-functions/note-context-helper";
+import { getAllNoteTitles } from "../helper-functions/note-context-helper";
 import { loadedNoteReducer, sampleLoadedNote } from "../reducers/note-reducer";
 
 export const NoteContext = createContext<NoteContextType | null>(null);
@@ -33,7 +30,9 @@ function NoteContextProvider({ children }: Props) {
 		let newNote: Note = {
 			title: loadedNoteState.title,
 			addDate: new Date(),
+			deleteDate: loadedNoteState.deleteDate,
 			details: loadedNoteState.details,
+			tags: loadedNoteState.tags,
 		};
 		setNotesArray((prev) => [...prev, newNote]);
 		dispatchLoadedNoteStateAction({ type: "clearAllInputs" });

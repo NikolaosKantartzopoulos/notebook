@@ -12,6 +12,7 @@
     "eslint-plugin-testing-library": "^5.10.2",
     "next": "latest",
     "react": "^18.1.0",
+    "react-datepicker": "^4.10.0",
     "react-dom": "^18.1.0"
   },
   "devDependencies": {
@@ -19,6 +20,7 @@
     "@testing-library/react": "13.2.0",
     "@testing-library/user-event": "14.2.0",
     "@types/react": "18.0.9",
+    "@types/react-datepicker": "^4.8.0",
     "@types/testing-library__jest-dom": "5.14.5",
     "eslint-config-next": "^13.1.6",
     "eslint-config-prettier": "^8.6.0",
