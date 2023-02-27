@@ -1,15 +1,3 @@
-.note-tags-component {
-	@include flex-row;
-	justify-content: flex-start;
-	height: 2rem;
-	gap: 1rem;
-}
-
-.tagsDiv {
-	display: flex;
-	gap: 0.5rem;
-}
-
 .tag {
 	@include flex-row;
 	min-width: 6rem;

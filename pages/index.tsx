@@ -16,10 +16,10 @@ export default function Home() {
 				<title>Notebook</title>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<Card>
+			<main>
 				<AddNoteUI />
 				<NotesLibrary />
-			</Card>
+			</main>
 		</main>
 	);
 }

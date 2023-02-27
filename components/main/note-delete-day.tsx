@@ -18,7 +18,7 @@ function NoteDeleteDate({}: Props) {
 	}
 
 	return (
-		<div className="note-delete-date">
+		<div id="note-delete-date">
 			<p>Ends</p>
 			<DatePicker
 				dateFormat="dd/MM/yy"

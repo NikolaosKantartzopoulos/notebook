@@ -23,7 +23,7 @@ function NoteContextProvider({ children }: Props) {
 		sampleLoadedNote
 	);
 
-	const [notesArray, setNotesArray] = useState<Note[]>([]);
+	const [notesArray, setNotesArray] = useState<Note[] | []>([]);
 
 	function addNote(): void {
 		if (getAllNoteTitles(notesArray).includes(loadedNoteState.title)) return;

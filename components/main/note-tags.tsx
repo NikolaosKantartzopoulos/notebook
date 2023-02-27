@@ -1,7 +1,6 @@
 import { NoteContext } from "@/data/contexts/note-context";
 import React, { useContext, useRef, useState } from "react";
 import InputWithButton from "../UI/input-with-button";
-import Tag from "./tag";
 
 type Props = {};
 
@@ -21,19 +20,7 @@ function NoteTags({}: Props) {
 	}
 
 	return (
-		<div className="note-tags-component">
-			<div className="tagsDiv">
-				{noteCtx!.loadedNoteState!.tags!.map((t) => (
-					<Tag
-						tag={t}
-						key={t}
-						dispatchLoadedNoteStateAction={
-							noteCtx!.dispatchLoadedNoteStateAction
-						}
-						currentTags={noteCtx!.loadedNoteState!.tags!}
-					/>
-				))}
-			</div>
+		<div id="note-tags-component">
 			{noteCtx!.loadedNoteState!.tags!.length < 3 && (
 				<InputWithButton
 					type="text"
