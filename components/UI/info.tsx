@@ -7,13 +7,13 @@ function Info({ children }: Props) {
 	const varCtx = useContext(VariablesContext);
 	const [infoVisible, setInfoVisibility] = useState(true);
 
-	// useEffect(() => {
-	// 	setInfoVisibility(true);
-	// 	setTimeout(() => {
-	// 		varCtx!.setInfo(null);
-	// 		setInfoVisibility(false);
-	// 	}, 2500);
-	// }, []);
+	useEffect(() => {
+		setInfoVisibility(true);
+		setTimeout(() => {
+			varCtx!.setInfo(null);
+			setInfoVisibility(false);
+		}, 2500);
+	}, []);
 
 	if (infoVisible) {
 		return (
