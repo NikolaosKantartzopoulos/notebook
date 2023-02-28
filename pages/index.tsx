@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { NoteContext } from "@/data/contexts/note-context";
+import { VariablesContext } from "@/data/contexts/variables-context";
 
 import Head from "next/head";
 
@@ -8,7 +8,7 @@ import NotesLibrary from "@/components/main/notes-library";
 import Info from "@/components/UI/info";
 
 export default function Home() {
-	const noteCtx = useContext(NoteContext!);
+	const varCtx = useContext(VariablesContext!);
 
 	return (
 		<main id="home-page">
@@ -17,7 +17,7 @@ export default function Home() {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			<main>
-				<Info />
+				{varCtx?.info && <Info />}
 				<AddNoteUI />
 				<NotesLibrary />
 			</main>
