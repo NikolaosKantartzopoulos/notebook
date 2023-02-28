@@ -20,9 +20,11 @@ function ListItem({ note }: Props) {
 				</div>
 			</div>
 			<div>
-				<div className="note-details" data-testid="detailsTextarea">
-					{note.details}
-				</div>
+				{note.details ? (
+					<div className="note-details" data-testid="detailsTextarea">
+						{note.details}
+					</div>
+				) : null}
 			</div>
 			<div className="list-item-tags-div">
 				{note!.tags!.map((t) => (

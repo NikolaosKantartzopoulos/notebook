@@ -48,8 +48,13 @@ describe("Home", () => {
 
 		const noteOneTitle = await screen.findByTestId("noteTitle");
 		const noteOneDetails = await screen.findByText("Sample Details");
+		const allTags = await screen.findAllByText(/tag./);
+
 		expect(noteOneTitle).toBeInTheDocument();
 		expect(noteOneDetails).toBeInTheDocument();
+		expect(allTags[0]).toHaveTextContent("tag1");
+		expect(allTags[1]).toHaveTextContent("tag2");
+		expect(allTags[2]).toHaveTextContent("tag3");
 	});
 
 	test("add wrong inputs", async () => {

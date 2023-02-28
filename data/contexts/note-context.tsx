@@ -1,7 +1,9 @@
-import { useState, createContext, SetStateAction, useReducer } from "react";
+import { useState, createContext, useReducer, useContext } from "react";
 import Note from "../interfaces/note-interface";
 import { getAllNoteTitles } from "../helper-functions/note-context-helper";
 import { loadedNoteReducer, sampleLoadedNote } from "../reducers/note-reducer";
+import { informationBlock, TypeOfInfo } from "../interfaces/variables.model";
+import { VariablesContext } from "./variables-context";
 
 export const NoteContext = createContext<NoteContextType | null>(null);
 
@@ -15,9 +17,13 @@ interface NoteContextType {
 
 interface Props {
 	children?: JSX.Element | JSX.Element[];
+	info: informationBlock;
+	setInfo: React.Dispatch<React.SetStateAction<informationBlock | null>>;
 }
 
 function NoteContextProvider({ children }: Props) {
+	const varCtx = useContext(VariablesContext);
+
 	const [loadedNoteState, dispatchLoadedNoteStateAction] = useReducer(
 		loadedNoteReducer,
 		sampleLoadedNote
@@ -26,16 +32,30 @@ function NoteContextProvider({ children }: Props) {
 	const [notesArray, setNotesArray] = useState<Note[] | []>([]);
 
 	function addNote(): void {
-		if (getAllNoteTitles(notesArray).includes(loadedNoteState.title)) return;
+		if (loadedNoteState.title.trim() === "") {
+			varCtx?.setInfo({ text: "Title field is empty", type: TypeOfInfo.error });
+			return;
+		}
+
+		if (getAllNoteTitles(notesArray).includes(loadedNoteState.title)) {
+			varCtx?.setInfo({ text: "Title already exists", type: TypeOfInfo.error });
+			return;
+		}
+
 		let newNote: Note = {
 			title: loadedNoteState.title,
 			addDate: new Date(),
-			deleteDate: loadedNoteState.deleteDate,
-			details: loadedNoteState.details,
+			deleteDate: loadedNoteState.deleteDate
+				? loadedNoteState.deleteDate
+				: null,
+			details:
+				loadedNoteState.details.trim() === "" ? null : loadedNoteState.details,
 			tags: loadedNoteState.tags,
 		};
+
 		setNotesArray((prev) => [...prev, newNote]);
 		dispatchLoadedNoteStateAction({ type: "clearAllInputs" });
+		varCtx?.setInfo({ text: "Note submited!", type: TypeOfInfo.ok });
 	}
 
 	const noteContext = {

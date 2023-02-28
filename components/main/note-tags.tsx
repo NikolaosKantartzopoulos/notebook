@@ -10,7 +10,8 @@ function NoteTags({}: Props) {
 
 	const [tagInputValue, setTagInputValue] = useState("");
 
-	function newTabHandler() {
+	function newTagHandler() {
+		if (tagInputValue.trim() == "") return;
 		noteCtx?.dispatchLoadedNoteStateAction({
 			type: "setLoadedNoteTags",
 			tags: [...noteCtx!.loadedNoteState!.tags!, tagInputValue],
@@ -26,10 +27,13 @@ function NoteTags({}: Props) {
 					type="text"
 					label="Tags"
 					id="tags-input"
-					onChange={setTagInputValue}
+					onChange={(e) => {
+						if (tagInputValue.length >= 8) return;
+						setTagInputValue(e);
+					}}
 					text="+"
 					value={tagInputValue}
-					triggerFn={newTabHandler}
+					triggerFn={newTagHandler}
 					inputWidth="5rem"
 					style={{ maxWidth: "9rem" }}
 					inputRef={inputRef}
