@@ -17,11 +17,11 @@ interface NoteContextType {
 
 interface Props {
 	children?: JSX.Element | JSX.Element[];
-	info: informationBlock;
-	setInfo: React.Dispatch<React.SetStateAction<informationBlock | null>>;
+	info?: informationBlock;
+	setInfo?: React.Dispatch<React.SetStateAction<informationBlock | null>>;
 }
 
-function NoteContextProvider({ children }: Props) {
+function NoteContextProvider({ children, info, setInfo }: Props) {
 	const varCtx = useContext(VariablesContext);
 
 	const [loadedNoteState, dispatchLoadedNoteStateAction] = useReducer(
