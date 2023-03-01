@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "date-fns": "^2.29.3",
     "eslint-plugin-testing-library": "^5.10.2",
     "next": "latest",
     "react": "^18.1.0",

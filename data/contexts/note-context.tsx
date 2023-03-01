@@ -56,6 +56,7 @@ function NoteContextProvider({ children, info, setInfo }: Props) {
 		setNotesArray((prev) => [...prev, newNote]);
 		dispatchLoadedNoteStateAction({ type: "clearAllInputs" });
 		varCtx?.setInfo({ text: "Note submited!", type: TypeOfInfo.ok });
+		varCtx?.setAddNoteUIVisible(false);
 	}
 
 	const noteContext = {

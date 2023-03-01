@@ -12,4 +12,6 @@ export interface informationBlock {
 export interface VariablesContextType {
 	info: informationBlock | null;
 	setInfo: React.Dispatch<React.SetStateAction<informationBlock | null>>;
+	addNoteUIVisible: boolean;
+	setAddNoteUIVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }

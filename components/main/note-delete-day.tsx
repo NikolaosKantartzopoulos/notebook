@@ -4,6 +4,7 @@ import { NoteContext } from "@/data/contexts/note-context";
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { subDays } from "date-fns";
 
 type Props = {};
 
@@ -25,6 +26,7 @@ function NoteDeleteDate({}: Props) {
 				selected={noteCtx?.loadedNoteState?.deleteDate}
 				onChange={deleteDayHandler}
 				id="datepicker"
+				minDate={subDays(new Date(), -1)}
 			/>
 		</div>
 	);

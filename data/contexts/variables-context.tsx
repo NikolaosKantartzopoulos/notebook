@@ -14,8 +14,14 @@ interface Props {
 
 function VariablesContextProvider({ children }: Props) {
 	const [info, setInfo] = useState<informationBlock | null>(null);
+	const [addNoteUIVisible, setAddNoteUIVisible] = useState(false);
 
-	const variablesContext = { info, setInfo };
+	const variablesContext = {
+		info,
+		setInfo,
+		addNoteUIVisible,
+		setAddNoteUIVisible,
+	};
 
 	return (
 		<VariablesContext.Provider value={variablesContext}>

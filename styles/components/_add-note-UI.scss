@@ -1,7 +1,18 @@
+#add-new-event-button {
+	position: absolute;
+	bottom: 4px;
+	right: 4px;
+}
+
 #add-note-UI {
 	width: $mini-card-width;
 	background: url("../../public/assets/images/blue.jpg");
 	box-shadow: $shadow-m;
+	position: absolute;
+	top: 50%;
+	transform: translateX(-50%);
+	transform: translateY(-50%);
+	z-index: 20;
 }
 
 .dateAndTagsDiv {

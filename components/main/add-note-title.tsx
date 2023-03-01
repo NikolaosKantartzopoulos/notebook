@@ -16,7 +16,7 @@ function NoteTitle({}: Props) {
 	}
 
 	return (
-		<div id="note-title">
+		<div id="note-title" data-testid="note-title">
 			<InputWithButton
 				id="add-new-note"
 				onChange={handleTitleChange}
