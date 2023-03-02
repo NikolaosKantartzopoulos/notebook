@@ -1,12 +1,14 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 import { NoteContext } from "@/data/contexts/note-context";
 
 import InputWithButton from "../UI/input-with-button";
 
-type Props = {};
+interface Props {
+	titleRef: React.MutableRefObject<HTMLInputElement | null>;
+}
 
-function NoteTitle({}: Props) {
+function NoteTitle({ titleRef }: Props) {
 	const noteCtx = useContext(NoteContext);
 	function handleTitleChange(e: any) {
 		noteCtx!.dispatchLoadedNoteStateAction({
@@ -14,6 +16,10 @@ function NoteTitle({}: Props) {
 			title: e,
 		});
 	}
+
+	useEffect(() => {
+		titleRef!.current!.focus();
+	}, []);
 
 	return (
 		<div id="note-title" data-testid="note-title">
@@ -24,6 +30,7 @@ function NoteTitle({}: Props) {
 				value={noteCtx!.loadedNoteState!.title}
 				triggerFn={noteCtx!.addNote}
 				placeholder="Title..."
+				inputRef={titleRef}
 			/>
 		</div>
 	);

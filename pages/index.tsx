@@ -24,6 +24,7 @@ export default function Home({ notes }: Props) {
 	const varCtx = useContext(VariablesContext!);
 	const noteCtx = useContext(NoteContext!);
 	const ref = useRef<Element | null>(null);
+	const titleRef = useRef<HTMLInputElement | null>(null);
 
 	useEffect(() => {
 		noteCtx?.setNotesArray(notes);
@@ -36,11 +37,9 @@ export default function Home({ notes }: Props) {
 				<title>Notebook</title>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<div>
-				{varCtx?.info && <Info />}
-				{varCtx?.addNoteUIVisible && <AddNoteUI />}
-				<NotesLibrary />
-			</div>
+			{varCtx?.info && <Info />}
+			{varCtx?.addNoteUIVisible && <AddNoteUI titleRef={titleRef} />}
+			<NotesLibrary />
 			{!varCtx?.addNoteUIVisible && (
 				<Image
 					src={plusImage}

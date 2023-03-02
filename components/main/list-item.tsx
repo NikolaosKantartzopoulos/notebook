@@ -1,4 +1,4 @@
-import React, { Touch, useContext, useState } from "react";
+import React, { Touch, useContext, useRef, useState } from "react";
 
 import Note from "@/data/interfaces/note-interface";
 import { NoteContext } from "@/data/contexts/note-context";
@@ -9,6 +9,7 @@ interface Props {
 
 function ListItem({ note }: Props) {
 	const noteCtx = useContext(NoteContext);
+	const listItem = useRef<React.MutableRefObject<HTMLElement> | null>(null);
 
 	const [touchStart, setTouchStart] = useState(0);
 	const [touchEnd, setTouchEnd] = useState(0);
@@ -26,13 +27,20 @@ function ListItem({ note }: Props) {
 	}
 
 	function handleTouchEnd() {
+		if (touchStart - touchEnd < 150 && touchStart - touchEnd > -150) {
+			//@ts-ignore
+			listItem!.current!.style!.left = 0;
+		}
 		if (touchStart - touchEnd > 150) {
-			// do your stuff here for left swipe
 			handleDeleteItem();
+			//@ts-ignore
+			listItem!.current!.style!.left = "-110%";
 		}
 
 		if (touchStart - touchEnd < -150) {
 			handleDeleteItem();
+			//@ts-ignore
+			listItem!.current!.style!.left = "110%";
 		}
 	}
 	return (
@@ -41,6 +49,9 @@ function ListItem({ note }: Props) {
 			onTouchStart={handleTouchStart}
 			onTouchMove={handleTouchMove}
 			onTouchEnd={handleTouchEnd}
+			style={{ left: touchEnd - touchStart }}
+			//@ts-ignore
+			ref={listItem}
 		>
 			<div className="note-title">
 				<h3 data-testid="noteTitle">{note.title}</h3>

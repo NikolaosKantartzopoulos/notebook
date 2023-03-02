@@ -8,12 +8,16 @@ import NoteTitle from "./add-note-title";
 import AddNoteTagsDiv from "./add-note-tags-div";
 import { VariablesContext } from "@/data/contexts/variables-context";
 
-function AddNoteUI() {
+interface Props {
+	titleRef: React.MutableRefObject<HTMLInputElement | null>;
+}
+
+function AddNoteUI({ titleRef }: Props) {
 	const varCtx = useContext(VariablesContext);
 
 	return (
 		<Card id="add-note-UI">
-			<NoteTitle />
+			<NoteTitle titleRef={titleRef} />
 			<NoteDeleteDate />
 			<NoteTags />
 			<AddNoteTagsDiv />
