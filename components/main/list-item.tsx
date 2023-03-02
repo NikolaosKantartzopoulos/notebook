@@ -50,6 +50,9 @@ function ListItem({ note }: Props) {
 					<p>-</p>
 					<p>{new Date(note.deleteDate!).toLocaleDateString("el-GR")}</p>
 				</div>
+				<div className="itemDeleteButton" onClick={handleDeleteItem}>
+					x
+				</div>
 			</div>
 			<div>
 				{note.details ? (
@@ -64,9 +67,6 @@ function ListItem({ note }: Props) {
 						{t}
 					</p>
 				))}
-			</div>
-			<div className="itemDeleteButton" onClick={handleDeleteItem}>
-				x
 			</div>
 		</li>
 	);

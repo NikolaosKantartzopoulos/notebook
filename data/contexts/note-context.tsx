@@ -54,13 +54,18 @@ function NoteContextProvider({ children, info, setInfo }: Props) {
 			tags: loadedNoteState.tags,
 		};
 
-		await fetch("/api/manage-notes", {
+		const postRes = await fetch("/api/manage-notes", {
 			method: "POST",
 			headers: {
 				"Context-Type": "application-json",
 			},
 			body: JSON.stringify(newNote),
 		});
+
+		if (postRes.ok) {
+			const postData = await postRes.json();
+			newNote._id = postData._id;
+		}
 
 		setNotesArray((prev) => [...prev, newNote]);
 		dispatchLoadedNoteStateAction({ type: "clearAllInputs" });
@@ -76,8 +81,11 @@ function NoteContextProvider({ children, info, setInfo }: Props) {
 		});
 		console.log(deleteRes);
 		if (deleteRes.ok) {
-			// notesArray.filter((note) => note._id !== deleteRes.body?._id);
-			console.log(deleteRes.body);
+			const data = await deleteRes.json();
+			setNotesArray((notesArray) =>
+				notesArray.filter((note) => note._id !== data._id)
+			);
+			console.log(data);
 		}
 	}
 
