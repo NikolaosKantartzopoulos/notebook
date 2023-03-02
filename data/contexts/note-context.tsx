@@ -31,7 +31,7 @@ function NoteContextProvider({ children, info, setInfo }: Props) {
 
 	const [notesArray, setNotesArray] = useState<Note[] | []>([]);
 
-	function addNote(): void {
+	async function addNote(): Promise<void> {
 		if (loadedNoteState.title.trim() === "") {
 			varCtx?.setInfo({ text: "Title field is empty", type: TypeOfInfo.error });
 			return;
@@ -52,6 +52,14 @@ function NoteContextProvider({ children, info, setInfo }: Props) {
 				loadedNoteState.details.trim() === "" ? null : loadedNoteState.details,
 			tags: loadedNoteState.tags,
 		};
+
+		await fetch("/api/manage-notes", {
+			method: "POST",
+			headers: {
+				"Context-Type": "application-json",
+			},
+			body: JSON.stringify(newNote),
+		});
 
 		setNotesArray((prev) => [...prev, newNote]);
 		dispatchLoadedNoteStateAction({ type: "clearAllInputs" });

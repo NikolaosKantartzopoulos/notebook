@@ -1,5 +1,7 @@
 import { useContext, useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
+import { connectDatabase } from "@/data/helper-functions/databaseFn";
+
 import { VariablesContext } from "@/data/contexts/variables-context";
 
 import Head from "next/head";
@@ -11,16 +13,24 @@ import Image from "next/image";
 
 import plusImage from "@/public/assets/images/plus-circle.svg";
 import { NoteContext } from "@/data/contexts/note-context";
+import { GetServerSideProps } from "next";
+import Note from "@/data/interfaces/note-interface";
 
-export default function Home() {
+interface Props {
+	notes: Note[];
+}
+
+export default function Home({ notes }: Props) {
 	const varCtx = useContext(VariablesContext!);
 	const noteCtx = useContext(NoteContext!);
 	const ref = useRef<Element | null>(null);
 
 	useEffect(() => {
+		noteCtx?.setNotesArray(notes);
 		ref.current = document.querySelector<HTMLElement>("#backdrop-root");
 	}, []);
 
+	console.log(notes);
 	return (
 		<main id="home-page">
 			<Head>
@@ -60,3 +70,19 @@ export default function Home() {
 		</main>
 	);
 }
+
+export const getServerSideProps: GetServerSideProps = async () => {
+	const { client, db } = await connectDatabase();
+
+	const allNotes = await db.collection("notes").find().toArray();
+	const notes = allNotes.map((note) => ({
+		...note,
+		_id: note._id.toString(),
+	}));
+
+	return {
+		props: {
+			notes,
+		},
+	};
+};

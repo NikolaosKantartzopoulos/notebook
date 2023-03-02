@@ -14,9 +14,9 @@ function ListItem({ note }: Props) {
 				<h3 data-testid="noteTitle">{note.title}</h3>
 
 				<div className="date-range">
-					<p>{note.addDate!.toLocaleDateString("el-GR")} </p>
+					<p>{new Date(note.addDate!).toLocaleDateString("el-GR")} </p>
 					<p>-</p>
-					<p>{note.deleteDate!.toLocaleDateString("el-GR")}</p>
+					<p>{new Date(note.deleteDate!).toLocaleDateString("el-GR")}</p>
 				</div>
 			</div>
 			<div>

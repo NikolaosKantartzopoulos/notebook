@@ -2,6 +2,16 @@
 	position: absolute;
 	bottom: 4px;
 	right: 4px;
+	cursor: pointer;
+	border-radius: 50%;
+	margin: 1rem;
+	transition: 250ms all;
+	transform: rotate(0deg);
+
+	&:hover {
+		transition: 250ms all;
+		transform: rotate(90deg);
+	}
 }
 
 #add-note-UI {
