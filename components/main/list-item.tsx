@@ -1,17 +1,20 @@
-import React, { Touch, useState } from "react";
+import React, { Touch, useContext, useState } from "react";
 
 import Note from "@/data/interfaces/note-interface";
+import { NoteContext } from "@/data/contexts/note-context";
 
 interface Props {
 	note: Note;
 }
 
 function ListItem({ note }: Props) {
+	const noteCtx = useContext(NoteContext);
+
 	const [touchStart, setTouchStart] = useState(0);
 	const [touchEnd, setTouchEnd] = useState(0);
 
 	function handleDeleteItem() {
-		console.log(note._id);
+		noteCtx?.deleteNote(note!._id!);
 	}
 
 	function handleTouchStart(e: React.TouchEvent) {
@@ -25,10 +28,11 @@ function ListItem({ note }: Props) {
 	function handleTouchEnd() {
 		if (touchStart - touchEnd > 150) {
 			// do your stuff here for left swipe
+			handleDeleteItem();
 		}
 
 		if (touchStart - touchEnd < -150) {
-			console.log(note._id);
+			handleDeleteItem();
 		}
 	}
 	return (

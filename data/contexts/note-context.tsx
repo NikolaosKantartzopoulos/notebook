@@ -13,6 +13,7 @@ interface NoteContextType {
 	notesArray: Note[] | [];
 	setNotesArray: React.Dispatch<React.SetStateAction<Note[]>>;
 	addNote: () => void;
+	deleteNote: (_id: string) => void;
 }
 
 interface Props {
@@ -67,12 +68,26 @@ function NoteContextProvider({ children, info, setInfo }: Props) {
 		varCtx?.setAddNoteUIVisible(false);
 	}
 
+	async function deleteNote(_id: string) {
+		const deleteRes = await fetch("/api/manage-notes", {
+			method: "DELETE",
+			headers: { "Content-Type": "text/plain" },
+			body: _id,
+		});
+		console.log(deleteRes);
+		if (deleteRes.ok) {
+			// notesArray.filter((note) => note._id !== deleteRes.body?._id);
+			console.log(deleteRes.body);
+		}
+	}
+
 	const noteContext = {
 		addNote,
 		dispatchLoadedNoteStateAction,
 		loadedNoteState,
 		notesArray,
 		setNotesArray,
+		deleteNote,
 	};
 
 	return (
