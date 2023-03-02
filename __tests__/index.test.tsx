@@ -76,7 +76,7 @@ describe("Home", () => {
 		const noteOneTitle = await screen.findByTestId("noteTitle");
 		const noteOneDetails = await screen.findByText("Sample Details");
 		const allTags = await screen.findAllByText(/tag./);
-		console.log(allTags);
+
 		expect(noteOneTitle).toBeInTheDocument();
 		expect(noteOneDetails).toBeInTheDocument();
 		expect(allTags[0]).toHaveTextContent("tag1");

@@ -1,15 +1,43 @@
-import React from "react";
+import React, { Touch, useState } from "react";
 
 import Note from "@/data/interfaces/note-interface";
-import Tag from "./tag";
 
 interface Props {
 	note: Note;
 }
 
 function ListItem({ note }: Props) {
+	const [touchStart, setTouchStart] = useState(0);
+	const [touchEnd, setTouchEnd] = useState(0);
+
+	function handleDeleteItem() {
+		console.log(note._id);
+	}
+
+	function handleTouchStart(e: React.TouchEvent) {
+		setTouchStart(e.targetTouches[0].clientX);
+	}
+
+	function handleTouchMove(e: React.TouchEvent) {
+		setTouchEnd(e.targetTouches[0].clientX);
+	}
+
+	function handleTouchEnd() {
+		if (touchStart - touchEnd > 150) {
+			// do your stuff here for left swipe
+		}
+
+		if (touchStart - touchEnd < -150) {
+			console.log(note._id);
+		}
+	}
 	return (
-		<li className="note-list-item">
+		<li
+			className="note-list-item"
+			onTouchStart={handleTouchStart}
+			onTouchMove={handleTouchMove}
+			onTouchEnd={handleTouchEnd}
+		>
 			<div className="note-title">
 				<h3 data-testid="noteTitle">{note.title}</h3>
 
@@ -32,6 +60,9 @@ function ListItem({ note }: Props) {
 						{t}
 					</p>
 				))}
+			</div>
+			<div className="itemDeleteButton" onClick={handleDeleteItem}>
+				x
 			</div>
 		</li>
 	);

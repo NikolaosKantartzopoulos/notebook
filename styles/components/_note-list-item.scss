@@ -6,6 +6,7 @@
 	margin-bottom: 1rem;
 	border-radius: 4px;
 	box-shadow: $shadow-m;
+	position: relative;
 }
 
 .note-title {
@@ -46,5 +47,27 @@
 		color: $dark-main-1;
 		padding: 4px;
 		width: fit-content;
+	}
+}
+
+.itemDeleteButton {
+	background-color: $error-color-1;
+	border-radius: 50%;
+	padding: 4px;
+	padding-top: 0;
+	position: absolute;
+	top: 4px;
+	right: 4px;
+	width: 1.5rem;
+	height: 1.5rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	transition: $animation-fast;
+
+	&:hover {
+		background-color: $error-color-2;
+		transition: $animation-fast;
 	}
 }

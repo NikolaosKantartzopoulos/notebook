@@ -5,4 +5,5 @@ export default interface Note {
 	details?: string;
 	tags?: string[];
 	children?: JSX.Element | JSX.Element[];
+	_id?: string;
 }

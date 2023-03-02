@@ -30,7 +30,6 @@ export default function Home({ notes }: Props) {
 		ref.current = document.querySelector<HTMLElement>("#backdrop-root");
 	}, []);
 
-	console.log(notes);
 	return (
 		<main id="home-page">
 			<Head>
