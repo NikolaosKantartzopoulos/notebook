@@ -8,6 +8,7 @@
 	transition: 250ms all;
 	transform: rotate(0deg);
 	background-color: $light-main-1;
+	z-index: 15;
 
 	&:hover {
 		transition: 250ms all;
@@ -20,9 +21,7 @@
 	background: url("../../public/assets/images/blue.jpg");
 	box-shadow: $shadow-m;
 	position: absolute;
-	top: 50%;
-	transform: translateX(-50%);
-	transform: translateY(-50%);
+	top: 3rem;
 	z-index: 20;
 }
 

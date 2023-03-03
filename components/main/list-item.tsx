@@ -39,13 +39,13 @@ function ListItem({ note }: Props) {
 		if (touchStart - touchEnd > 150) {
 			handleDeleteItem();
 			//@ts-ignore
-			listItem!.current!.style!.left = "-110%";
+			listItem!.current!.style!.left = "-80%";
 		}
 
 		if (touchStart - touchEnd < -150) {
 			handleDeleteItem();
 			//@ts-ignore
-			listItem!.current!.style!.left = "110%";
+			listItem!.current!.style!.left = "80%";
 		}
 	}
 	return (

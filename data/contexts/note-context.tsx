@@ -54,6 +54,10 @@ function NoteContextProvider({ children, info, setInfo }: Props) {
 			tags: loadedNoteState.tags,
 		};
 
+		setNotesArray((prev) => [...prev, newNote]);
+		dispatchLoadedNoteStateAction({ type: "clearAllInputs" });
+		varCtx?.setAddNoteUIVisible(false);
+
 		const postRes = await fetch("/api/manage-notes", {
 			method: "POST",
 			headers: {
@@ -67,10 +71,9 @@ function NoteContextProvider({ children, info, setInfo }: Props) {
 			newNote._id = postData._id;
 		}
 
+		setNotesArray((prev) => [...prev.filter((n) => n.title != newNote.title)]);
 		setNotesArray((prev) => [...prev, newNote]);
-		dispatchLoadedNoteStateAction({ type: "clearAllInputs" });
 		varCtx?.setInfo({ text: "Note submited!", type: TypeOfInfo.ok });
-		varCtx?.setAddNoteUIVisible(false);
 	}
 
 	async function deleteNote(_id: string) {
