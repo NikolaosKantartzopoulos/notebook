@@ -3,6 +3,11 @@ import React, { Touch, useContext, useRef, useState } from "react";
 import Note from "@/data/interfaces/note-interface";
 import { NoteContext } from "@/data/contexts/note-context";
 
+import Image from "next/image";
+
+import editFileImage from "@/public/assets/images/file-edit-outline.svg";
+import deleteFileImage from "@/public/assets/images/delete-forever-outline.svg";
+
 interface Props {
 	note: Note;
 }
@@ -44,40 +49,47 @@ function ListItem({ note }: Props) {
 		}
 	}
 	return (
-		<li
-			className="note-list-item"
-			onTouchStart={handleTouchStart}
-			onTouchMove={handleTouchMove}
-			onTouchEnd={handleTouchEnd}
-			style={{ left: touchEnd - touchStart }}
-			//@ts-ignore
-			ref={listItem}
-		>
-			<div className="note-title">
-				<h3 data-testid="noteTitle">{note.title}</h3>
-
-				<div className="date-range">
-					<p>{new Date(note.addDate!).toLocaleDateString("el-GR")} </p>
-					<p>-</p>
-					<p>{new Date(note.deleteDate!).toLocaleDateString("el-GR")}</p>
-				</div>
-				<div className="itemDeleteButton" onClick={handleDeleteItem}>
-					x
-				</div>
-			</div>
-			<div>
-				{note.details ? (
-					<div className="note-details" data-testid="detailsTextarea">
-						{note.details}
+		<li className="note-list-item">
+			<div
+				className="list-item-foreground"
+				onTouchStart={handleTouchStart}
+				onTouchMove={handleTouchMove}
+				onTouchEnd={handleTouchEnd}
+				style={{ left: touchEnd - touchStart }}
+				//@ts-ignore
+				ref={listItem}
+			>
+				<div className="note-title">
+					<div className="list-item-title-and-date">
+						<h3 data-testid="noteTitle">{note.title}</h3>
+						<div className="date-range">
+							<p>{new Date(note.addDate!).toLocaleDateString("el-GR")} </p>
+							<p>-</p>
+							<p>{new Date(note.deleteDate!).toLocaleDateString("el-GR")}</p>
+						</div>
 					</div>
-				) : null}
+					<div className="itemDeleteButton" onClick={handleDeleteItem}>
+						x
+					</div>
+				</div>
+				<div>
+					{note.details ? (
+						<div className="note-details" data-testid="detailsTextarea">
+							{note.details}
+						</div>
+					) : null}
+				</div>
+				<div className="list-item-tags-div">
+					{note!.tags!.map((t) => (
+						<p key={t} className="tagParagraph">
+							{t}
+						</p>
+					))}
+				</div>
 			</div>
-			<div className="list-item-tags-div">
-				{note!.tags!.map((t) => (
-					<p key={t} className="tagParagraph">
-						{t}
-					</p>
-				))}
+			<div className="list-item-background">
+				<Image src={deleteFileImage} alt="delete-icon" width={64} height={64} />
+				<Image src={deleteFileImage} alt="delete-icon" width={64} height={64} />
 			</div>
 		</li>
 	);
