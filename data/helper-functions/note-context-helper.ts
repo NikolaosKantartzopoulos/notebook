@@ -1,4 +1,4 @@
-import Note from "../interfaces/note-interface";
+import Note from "../interfaces/note.model";
 
 export function getAllNoteTitles(notesArray: Note[]): string[] {
 	return notesArray.map((note) => note.title);
