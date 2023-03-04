@@ -1,20 +1,22 @@
-import { useContext, useState, useEffect, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
-import { connectDatabase } from "@/data/helper-functions/databaseFn";
 
 import { VariablesContext } from "@/data/contexts/variables-context";
+import { NoteContext } from "@/data/contexts/note-context";
 
 import Head from "next/head";
+import { GetServerSideProps } from "next";
+import Image from "next/image";
+
+import Note from "@/data/interfaces/note.model";
+
+import { connectDatabase } from "@/data/helper-functions/databaseFn";
 
 import AddNoteUI from "@/components/main/add-note-UI";
 import NotesLibrary from "@/components/main/notes-library";
 import Info from "@/components/UI/info";
-import Image from "next/image";
 
 import plusImage from "@/public/assets/images/plus-circle.svg";
-import { NoteContext } from "@/data/contexts/note-context";
-import { GetServerSideProps } from "next";
-import Note from "@/data/interfaces/note-interface";
 
 interface Props {
 	notes: Note[];
@@ -23,6 +25,7 @@ interface Props {
 export default function Home({ notes }: Props) {
 	const varCtx = useContext(VariablesContext!);
 	const noteCtx = useContext(NoteContext!);
+
 	const ref = useRef<Element | null>(null);
 	const titleRef = useRef<HTMLInputElement | null>(null);
 
@@ -72,7 +75,12 @@ export default function Home({ notes }: Props) {
 export const getServerSideProps: GetServerSideProps = async () => {
 	const { client, db } = await connectDatabase();
 
+	const delRes = await db
+		.collection("notes")
+		.deleteMany({ deleteDate: { $lte: new Date().toISOString() } });
+
 	const allNotes = await db.collection("notes").find().toArray();
+
 	const notes = allNotes.map((note) => ({
 		...note,
 		_id: note._id.toString(),

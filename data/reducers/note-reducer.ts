@@ -1,4 +1,4 @@
-import Note from "../interfaces/note-interface";
+import Note from "../interfaces/note.model";
 
 export function loadedNoteReducer(
 	state: any,
@@ -27,10 +27,16 @@ export function loadedNoteReducer(
 	}
 }
 
+function nextWeek() {
+	const nextWeek = new Date();
+	nextWeek.setDate(new Date().getDate() + 7);
+	return nextWeek;
+}
+
 export const sampleLoadedNote: Note = {
 	title: "",
 	details: "",
 	addDate: null,
-	deleteDate: new Date(),
+	deleteDate: nextWeek(),
 	tags: [],
 };

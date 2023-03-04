@@ -1,11 +1,12 @@
 import React from "react";
+
 import Input from "./input";
 import Button from "./button";
 
 interface Props {
 	id: string;
 	label?: string;
-	onChange: React.Dispatch<React.SetStateAction<string>>;
+	onChange: React.Dispatch<React.SetStateAction<string> | React.KeyboardEvent>;
 	type: string;
 	value: string | number;
 	triggerFn: () => void;

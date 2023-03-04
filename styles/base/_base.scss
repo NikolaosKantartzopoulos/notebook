@@ -15,11 +15,11 @@ body {
 
 #backdrop-division {
 	background-color: #111;
-	opacity: 0.95;
-	width: 100vw;
 	height: 100%;
-	z-index: 10;
-	top: 0;
 	left: 0;
+	opacity: 0.95;
 	position: absolute;
+	top: 0;
+	width: 100vw;
+	z-index: 10;
 }

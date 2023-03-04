@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
+
 import { NoteContext } from "@/data/contexts/note-context";
 
-import ListItem from "./list-item";
+import Note from "@/data/interfaces/note.model";
 
-import Note from "@/data/interfaces/note-interface";
+import ListItem from "./list-item";
 
 type Props = {};
 

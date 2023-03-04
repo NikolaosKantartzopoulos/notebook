@@ -1,9 +1,12 @@
 import { useState, createContext, useReducer, useContext } from "react";
-import Note from "../interfaces/note-interface";
-import { getAllNoteTitles } from "../helper-functions/note-context-helper";
-import { loadedNoteReducer, sampleLoadedNote } from "../reducers/note-reducer";
-import { informationBlock, TypeOfInfo } from "../interfaces/variables.model";
+
 import { VariablesContext } from "./variables-context";
+import { loadedNoteReducer, sampleLoadedNote } from "../reducers/note-reducer";
+
+import Note from "../interfaces/note.model";
+import { informationBlock, TypeOfInfo } from "../interfaces/variables.model";
+
+import { getAllNoteTitles } from "../helper-functions/note-context-helper";
 
 export const NoteContext = createContext<NoteContextType | null>(null);
 
@@ -69,26 +72,34 @@ function NoteContextProvider({ children, info, setInfo }: Props) {
 		if (postRes.ok) {
 			const postData = await postRes.json();
 			newNote._id = postData._id;
-		}
 
-		setNotesArray((prev) => [...prev.filter((n) => n.title != newNote.title)]);
-		setNotesArray((prev) => [...prev, newNote]);
-		varCtx?.setInfo({ text: "Note submited!", type: TypeOfInfo.ok });
+			setNotesArray((prev) => [
+				...prev.filter((n) => n.title != newNote.title),
+			]);
+			setNotesArray((prev) => [...prev, newNote]);
+			varCtx?.setInfo({ text: "Note submited!", type: TypeOfInfo.ok });
+		} else {
+			setNotesArray((prev) => [
+				...prev.filter((n) => n.title != newNote.title),
+			]);
+		}
 	}
 
 	async function deleteNote(_id: string) {
+		const initialNotes = notesArray;
+		setNotesArray((notesArray) =>
+			notesArray.filter((note) => note._id !== _id)
+		);
 		const deleteRes = await fetch("/api/manage-notes", {
 			method: "DELETE",
 			headers: { "Content-Type": "text/plain" },
 			body: _id,
 		});
-		console.log(deleteRes);
+
 		if (deleteRes.ok) {
 			const data = await deleteRes.json();
-			setNotesArray((notesArray) =>
-				notesArray.filter((note) => note._id !== data._id)
-			);
-			console.log(data);
+			setNotesArray(() => initialNotes.filter((note) => note._id !== data._id));
+			varCtx?.setInfo({ text: "Note deleted!", type: TypeOfInfo.ok });
 		}
 	}
 

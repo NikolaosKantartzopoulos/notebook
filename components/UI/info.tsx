@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+
 import { VariablesContext } from "@/data/contexts/variables-context";
 
 type Props = { children?: JSX.Element | JSX.Element[] };
@@ -12,7 +13,7 @@ function Info({ children }: Props) {
 		setTimeout(() => {
 			varCtx!.setInfo(null);
 			setInfoVisibility(false);
-		}, 2500);
+		}, 3000);
 	}, []);
 
 	if (infoVisible) {

@@ -1,5 +1,7 @@
-import { NoteContext } from "@/data/contexts/note-context";
 import React, { useContext, useRef, useState } from "react";
+
+import { NoteContext } from "@/data/contexts/note-context";
+
 import InputWithButton from "../UI/input-with-button";
 
 type Props = {};
@@ -29,6 +31,7 @@ function NoteTags({}: Props) {
 					id="tags-input"
 					onChange={(e) => {
 						if (tagInputValue.length >= 8) return;
+						//@ts-ignore
 						setTagInputValue(e);
 					}}
 					text="+"

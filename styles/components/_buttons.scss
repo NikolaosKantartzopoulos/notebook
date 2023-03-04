@@ -1,8 +1,8 @@
 button {
 	@include border-background;
-	height: 1.5rem;
 	cursor: pointer;
 	flex: auto 1 4rem;
+	height: 1.5rem;
 	transition: $animation-fast;
 
 	&:hover {

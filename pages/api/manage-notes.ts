@@ -16,14 +16,18 @@ export default async function handler(
 			case "POST":
 				const newNote = JSON.parse(req.body);
 				const postDatabaseRes = await db.collection("notes").insertOne(newNote);
-				res.status(200).json({ _id: postDatabaseRes.insertedId.toString() });
+				if (postDatabaseRes.acknowledged) {
+					res.status(200).json({ _id: postDatabaseRes.insertedId.toString() });
+				} else {
+					res.status(500);
+				}
 				break;
 
 			case "DELETE":
 				const dbDelRes = await db
 					.collection("notes")
 					.deleteOne({ _id: new ObjectId(req.body) });
-				console.log(dbDelRes);
+
 				if (dbDelRes.acknowledged) {
 					res
 						.status(200)

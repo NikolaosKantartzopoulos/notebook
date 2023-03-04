@@ -1,11 +1,11 @@
-import React, { Touch, useContext, useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 
-import Note from "@/data/interfaces/note-interface";
+import Note from "@/data/interfaces/note.model";
 import { NoteContext } from "@/data/contexts/note-context";
 
 import Image from "next/image";
 
-import editFileImage from "@/public/assets/images/file-edit-outline.svg";
+// import editFileImage from "@/public/assets/images/file-edit-outline.svg";
 import deleteFileImage from "@/public/assets/images/delete-forever-outline.svg";
 
 interface Props {
@@ -48,6 +48,7 @@ function ListItem({ note }: Props) {
 			listItem!.current!.style!.left = "80%";
 		}
 	}
+
 	return (
 		<li className="note-list-item">
 			<div

@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+
 import { NoteContext } from "@/data/contexts/note-context";
 
 import Input from "../UI/input";
