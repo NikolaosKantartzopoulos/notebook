@@ -17,7 +17,7 @@
 
 Simple Simple notebook
 
-My first project using Typescrit and Sass!
+My first project using Typescript and Sass!
 
 ---
 
