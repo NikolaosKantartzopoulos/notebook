@@ -4,11 +4,12 @@ import { createPortal } from "react-dom";
 import { VariablesContext } from "@/data/contexts/variables-context";
 import { NoteContext } from "@/data/contexts/note-context";
 
-import Head from "next/head";
 import { GetServerSideProps } from "next";
+import Head from "next/head";
 import Image from "next/image";
 
 import Note from "@/data/interfaces/note.model";
+import { loadedActionType } from "@/data/interfaces/variables.model";
 
 import { connectDatabase } from "@/data/helper-functions/databaseFn";
 
@@ -48,7 +49,10 @@ export default function Home({ notes }: Props) {
 					src={plusImage}
 					alt="Add new Event button"
 					id="add-new-event-button"
-					onClick={() => varCtx?.setAddNoteUIVisible(true)}
+					onClick={() => {
+						varCtx?.setLoadedAction(loadedActionType.addNote);
+						varCtx?.setAddNoteUIVisible(true);
+					}}
 					height={64}
 					width={64}
 					data-testid="plus-img"

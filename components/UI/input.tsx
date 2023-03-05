@@ -28,7 +28,7 @@ function Input({
 					id={id}
 					onChange={(e) => onChange(e.target.value)}
 					value={value}
-					rows={5}
+					rows={14}
 					placeholder={placeholder}
 				/>
 			</div>

@@ -19,23 +19,20 @@
 #add-note-UI {
 	background: url("../../public/assets/images/blue.jpg");
 	box-shadow: $shadow-m;
-	position: absolute;
+	position: fixed;
 	top: 3rem;
 	width: $mini-card-width;
 	z-index: 20;
+	align-items: center;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: 2rem 2rem 2rem 15rem;
+	justify-content: stretch;
 }
 
 .dateAndTagsDiv {
 	@include flex-row;
 	justify-content: flex-start;
-}
-
-#add-note-UI {
-	align-items: center;
-	display: grid;
-	grid-template-columns: repeat(4, 1fr);
-	grid-template-rows: 2rem 2rem 2rem 7rem;
-	justify-content: stretch;
 }
 
 #note-title {

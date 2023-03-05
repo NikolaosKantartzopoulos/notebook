@@ -1,6 +1,7 @@
 import { connectDatabase } from "@/data/helper-functions/databaseFn";
 import { NextApiRequest, NextApiResponse } from "next";
 import { ObjectId } from "mongodb";
+import Note from "@/data/interfaces/note.model";
 
 export default async function handler(
 	req: NextApiRequest,
@@ -18,6 +19,22 @@ export default async function handler(
 				const postDatabaseRes = await db.collection("notes").insertOne(newNote);
 				if (postDatabaseRes.acknowledged) {
 					res.status(200).json({ _id: postDatabaseRes.insertedId.toString() });
+				} else {
+					res.status(500);
+				}
+				break;
+
+			case "PATCH":
+				const replacementNote: Note = JSON.parse(req.body);
+				const toPatch = { ...replacementNote };
+				delete toPatch._id;
+
+				const putRes = await db
+					.collection("notes")
+					.replaceOne({ _id: new ObjectId(replacementNote._id) }, toPatch);
+
+				if (putRes.acknowledged) {
+					res.status(200).json({ type: "ok", text: "Note edited" });
 				} else {
 					res.status(500);
 				}

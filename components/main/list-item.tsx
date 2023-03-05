@@ -2,10 +2,13 @@ import React, { useContext, useRef, useState } from "react";
 
 import Note from "@/data/interfaces/note.model";
 import { NoteContext } from "@/data/contexts/note-context";
+import { VariablesContext } from "@/data/contexts/variables-context";
 
 import Image from "next/image";
 
-// import editFileImage from "@/public/assets/images/file-edit-outline.svg";
+import { loadedActionType } from "@/data/interfaces/variables.model";
+
+import editFileImage from "@/public/assets/images/file-edit-outline.svg";
 import deleteFileImage from "@/public/assets/images/delete-forever-outline.svg";
 
 interface Props {
@@ -14,6 +17,8 @@ interface Props {
 
 function ListItem({ note }: Props) {
 	const noteCtx = useContext(NoteContext);
+	const varCtx = useContext(VariablesContext);
+
 	const listItem = useRef<React.MutableRefObject<HTMLElement> | null>(null);
 
 	const [touchStart, setTouchStart] = useState(0);
@@ -21,6 +26,11 @@ function ListItem({ note }: Props) {
 
 	function handleDeleteItem() {
 		noteCtx?.deleteNote(note!._id!);
+	}
+
+	function handleEditItem() {
+		varCtx?.setLoadedAction(loadedActionType.editNote);
+		noteCtx?.prepareNoteEdit(note);
 	}
 
 	function handleTouchStart(e: React.TouchEvent) {
@@ -69,8 +79,24 @@ function ListItem({ note }: Props) {
 							<p>{new Date(note.deleteDate!).toLocaleDateString("el-GR")}</p>
 						</div>
 					</div>
-					<div className="itemDeleteButton" onClick={handleDeleteItem}>
-						x
+					<div className="ui-options">
+						<Image
+							src={editFileImage}
+							alt="Edit this note"
+							className="note-ui-button edit-item-button"
+							onClick={handleEditItem}
+						/>
+						<div
+							className="note-ui-button delete-item-button"
+							onClick={handleDeleteItem}
+						>
+							<Image
+								src={deleteFileImage}
+								alt="delete-icon"
+								width={24}
+								height={24}
+							/>
+						</div>
 					</div>
 				</div>
 				<div>

@@ -14,4 +14,13 @@ export interface VariablesContextType {
 	setInfo: React.Dispatch<React.SetStateAction<informationBlock | null>>;
 	addNoteUIVisible: boolean;
 	setAddNoteUIVisible: React.Dispatch<React.SetStateAction<boolean>>;
+	loadedAction: loadedActionType | null;
+	setLoadedAction: React.Dispatch<
+		React.SetStateAction<loadedActionType | null>
+	>;
+}
+
+export enum loadedActionType {
+	addNote = "addNote",
+	editNote = "editNote",
 }

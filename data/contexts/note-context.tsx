@@ -17,6 +17,8 @@ interface NoteContextType {
 	setNotesArray: React.Dispatch<React.SetStateAction<Note[]>>;
 	addNote: () => void;
 	deleteNote: (_id: string) => void;
+	editNote: () => void;
+	prepareNoteEdit: (note: Note) => void;
 }
 
 interface Props {
@@ -32,6 +34,8 @@ function NoteContextProvider({ children, info, setInfo }: Props) {
 		loadedNoteReducer,
 		sampleLoadedNote
 	);
+
+	const [editedNoteBuffer, setEditedNoteBuffer] = useState<Note | null>(null);
 
 	const [notesArray, setNotesArray] = useState<Note[] | []>([]);
 
@@ -85,6 +89,47 @@ function NoteContextProvider({ children, info, setInfo }: Props) {
 		}
 	}
 
+	function prepareNoteEdit(note: Note): void {
+		setEditedNoteBuffer(note);
+		dispatchLoadedNoteStateAction({ type: "loadNote", note: note });
+		varCtx?.setAddNoteUIVisible(true);
+	}
+
+	async function editNote(): Promise<void> {
+		if (loadedNoteState.title.trim() === "") {
+			varCtx?.setInfo({ text: "Title field is empty", type: TypeOfInfo.error });
+			return;
+		}
+
+		let filteredArray = notesArray.filter(
+			(note) => note._id !== editedNoteBuffer!._id!
+		);
+
+		setNotesArray([...filteredArray, loadedNoteState]);
+		dispatchLoadedNoteStateAction({ type: "clearAllInputs" });
+		varCtx?.setAddNoteUIVisible(false);
+
+		const patchRes = await fetch("/api/manage-notes", {
+			method: "PATCH",
+			headers: {
+				"Context-Type": "application-json",
+			},
+			body: JSON.stringify(loadedNoteState),
+		});
+
+		const newNote = loadedNoteState;
+
+		if (patchRes.ok) {
+			const patchResData: informationBlock = await patchRes.json();
+			varCtx?.setInfo({ text: patchResData.text, type: TypeOfInfo.ok });
+		} else {
+			setNotesArray((notesArray) =>
+				notesArray.filter((note) => note._id !== editedNoteBuffer!._id!)
+			);
+			setNotesArray((prev) => [...prev, editedNoteBuffer!]);
+		}
+	}
+
 	async function deleteNote(_id: string) {
 		const initialNotes = notesArray;
 		setNotesArray((notesArray) =>
@@ -110,6 +155,8 @@ function NoteContextProvider({ children, info, setInfo }: Props) {
 		notesArray,
 		setNotesArray,
 		deleteNote,
+		editNote,
+		prepareNoteEdit,
 	};
 
 	return (
