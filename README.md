@@ -5,9 +5,11 @@
 ### Created with
 
 - [React](https://reactjs.org/)
-- [NextJS](https://nextjs.org/)
 - [Typescript](https://www.typescriptlang.org/)
 - [Sass](https://sass-lang.com/)
+- [NextJS](https://nextjs.org/)
+- [MongoDB](https://www.mongodb.com/)
+
 
 ---
 
