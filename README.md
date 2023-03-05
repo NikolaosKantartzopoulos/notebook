@@ -1,4 +1,4 @@
-### Simple to-do list - [Live link](https://to-do-list-five-ebon.vercel.app/)
+### Simple notebook - [Live link](https://to-do-list-five-ebon.vercel.app/)
 
 ---
 
@@ -13,7 +13,7 @@
 
 ### Summary
 
-Simple to-do list. 
+Simple Simple notebook
 
 My first project useing Typescrit and Sass!
 
@@ -24,4 +24,3 @@ My first project useing Typescrit and Sass!
 ```
 git clone https://github.com/NikolaosKantartzopoulos/to-do-list.git && cd ./to-do-list && npm i && npm run dev
 ```
-
