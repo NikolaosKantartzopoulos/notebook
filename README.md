@@ -1,4 +1,4 @@
-### Simple notebook - [Live link](https://to-do-list-five-ebon.vercel.app/)
+### Simple notebook - [Live link](https://notebook-nk.vercel.app/)
 
 ---
 
